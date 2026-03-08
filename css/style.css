@@ -160,6 +160,7 @@ main {
     grid-template-areas:
         'introduction introduction'
         'who-am-i who-am-i'
+        'carreira carreira'
         'technologies technologies'
         'projects projects'
         'contact contact';
@@ -371,8 +372,8 @@ main {
     color: var(--cor-principal);
     font-size: 1.5rem;
     border-radius: 0 40px;
-    padding: 25px;
-    height: 20px;
+    padding: 20px;
+    height: 60px;
 }
 
 .card-bottom-left>p>span,
@@ -380,6 +381,246 @@ main {
     font-size: var(--font-size-textos);
     font-weight: 900;
 }
+
+/* ##################################################################### */
+/* ##################### Estilização: Secção Carreira ################## */
+/* ##################################################################### */
+
+#career {
+    grid-area: carreira;
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    position: relative;
+    padding-bottom: 20px;
+}
+
+#career::before {
+    content: 'CARREIRA';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: clamp(60px, 10vw, 140px);
+    font-weight: 900;
+    color: rgba(211, 225, 236, 0.03);
+    white-space: nowrap;
+    letter-spacing: 0.12em;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* ── TABS ── */
+.career-tabs {
+    display: flex;
+    gap: 12px;
+    background: rgba(211, 225, 236, 0.04);
+    border: 1px solid rgba(211, 225, 236, 0.08);
+    border-radius: 0 20px 0 20px;
+    padding: 6px;
+}
+
+.career-tab {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: none;
+    color: rgba(211, 225, 236, 0.4);
+    font-size: 0.88rem;
+    font-family: inherit;
+    letter-spacing: 0.06em;
+    padding: 10px 24px;
+    border-radius: 0 14px 0 14px;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.career-tab.active {
+    background: var(--cor-destaque);
+    color: #fff;
+}
+
+.career-tab:not(.active):hover {
+    background: rgba(211, 225, 236, 0.06);
+    color: var(--cor-texto);
+}
+
+/* ── TIMELINE ── */
+.career-timeline {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    max-width: 860px;
+    gap: 0;
+}
+
+.career-timeline.active {
+    display: flex;
+    animation: fadeUp 0.5s ease both;
+}
+
+/* item da timeline */
+.timeline-item {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 0 24px;
+}
+
+/* marcador vertical */
+.timeline-marker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 6px;
+}
+
+.marker-dot {
+    width: 14px;
+    height: 14px;
+    min-height: 14px;
+    background: var(--cor-destaque);
+    border-radius: 50%;
+    border: 3px solid var(--cor-principal);
+    box-shadow: 0 0 0 2px var(--cor-destaque), 0 0 16px rgba(19, 80, 137, 0.6);
+    position: relative;
+    z-index: 1;
+    transition: box-shadow 0.3s ease;
+}
+
+.timeline-item:hover .marker-dot {
+    box-shadow: 0 0 0 3px var(--cor-destaque), 0 0 28px rgba(19, 80, 137, 0.9);
+}
+
+.marker-line {
+    width: 2px;
+    flex: 1;
+    min-height: 30px;
+    background: linear-gradient(to bottom, var(--cor-destaque), rgba(19, 80, 137, 0.15));
+    margin-top: 4px;
+}
+
+/* card */
+.timeline-card {
+    background: rgba(211, 225, 236, 0.03);
+    border: 1px solid rgba(211, 225, 236, 0.08);
+    border-radius: 0 24px 0 24px;
+    padding: 24px 28px;
+    margin-bottom: 28px;
+    transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.timeline-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at top left, rgba(19, 80, 137, 0.08) 0%, transparent 65%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.timeline-item:hover .timeline-card {
+    border-color: rgba(19, 80, 137, 0.4);
+    transform: translateX(6px);
+    box-shadow: 0 8px 40px rgba(19, 80, 137, 0.15);
+}
+
+.timeline-item:hover .timeline-card::before {
+    opacity: 1;
+}
+
+.timeline-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+.timeline-tag {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #4ade80;
+    background: rgba(74, 222, 128, 0.08);
+    border: 1px solid rgba(74, 222, 128, 0.25);
+    padding: 3px 10px;
+    border-radius: 2px;
+    margin-bottom: 8px;
+}
+
+.timeline-role {
+    color: var(--cor-texto);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 0;
+}
+
+.timeline-company {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: rgba(211, 225, 236, 0.4);
+    font-size: 0.85rem;
+    margin-top: 5px;
+    letter-spacing: 0.03em;
+}
+
+.timeline-period {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    color: rgba(19, 80, 137, 0.7);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+    background: rgba(19, 80, 137, 0.1);
+    border: 1px solid rgba(19, 80, 137, 0.2);
+    padding: 5px 12px;
+    border-radius: 2px;
+    height: fit-content;
+}
+
+.period-sep {
+    color: rgba(19, 80, 137, 0.4);
+}
+
+.timeline-desc {
+    color: rgba(211, 225, 236, 0.5);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin-bottom: 16px;
+}
+
+.timeline-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.timeline-skills span {
+    background: rgba(211, 225, 236, 0.06);
+    border: 1px solid rgba(211, 225, 236, 0.1);
+    color: rgba(211, 225, 236, 0.45);
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 2px;
+}
+
+
+
 
 /* ##################################################################### */
 /* ################## Estilização: Secção Tecnologias ################## */
