@@ -1,0 +1,38 @@
+main {
+    /*height: 500px;*/
+    height: calc(100vh - 90px);
+    display: flex;
+    align-items: center;
+    width: 100%;
+    grid-area: main;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+div.about {
+    color: white;
+    
+}
+
+main section {
+    display: flex;
+    width: 100%;
+    margin-top: -100px;
+}
+
+main section div {
+    margin-right: 150px;
+}
+
+main section div h1 {
+    font-size: 130px;
+    font-weight: 100;
+}
+
+main section div p {
+    line-height: 1.5;
+    font-size: 17px;
+}
+
+main section img {
+    border-radius: 100%;
+}
